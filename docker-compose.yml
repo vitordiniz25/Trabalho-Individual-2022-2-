@@ -1,20 +1,30 @@
-version: "3"
+version: "3.5"
 
 services:
   mongo-db:
     image: mongo:latest
     restart: always
-    ports:
-      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: lapis
       MONGO_INITDB_ROOT_PASSWORD: lapis
-    networks:
-      - network
+    ports:
+      - 27017:27017
 
-  lib-gces:
-    build: .
+  # lib-gces:
+  #   build: .
+  #   depends_on:
+  #     - mongo-db
 
-networks:
-  network:
-    driver: bridge
+  metabase:
+    image: metabase/metabase
+    ports:
+      - 3002:3000
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: lappis
+      MB_DB_PORT: 5432
+      MB_DB_USER: lappis
+      MB_DB_PASS: lappis
+      MB_DB_HOST: postgres
+    depends_on:
+      - mongo-db
