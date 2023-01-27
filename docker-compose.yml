@@ -1,21 +1,29 @@
 version: "3.5"
-
 services:
-  mongo-db:
-    image: mongo:latest
-    restart: always
+  mongodb:
+    image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: lapis
       MONGO_INITDB_ROOT_PASSWORD: lapis
     ports:
-      - 27017:27017
-
-  # lib-gces:
-  #   build: .
-  #   depends_on:
-  #     - mongo-db
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
 
   metabase:
     image: metabase/metabase
     ports:
-      - 3000:3000
+      - "3000:3000"
+    environment:
+      MB_JAVA_OPTS: "-Dmetabase.plugins.directory=/app/plugins"
+      MB_PLUGINS_JAR: https://github.com/metabase/metabase-mongodb-plugin/releases/download/v0.1.0/metabase-mongodb-plugin-0.1.0.jar
+    depends_on:
+      - mongodb
+
+  # app:
+  #   build: .
+  #   depends_on:
+  #     - mongodb
+
+volumes:
+  mongo-data:
