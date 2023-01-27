@@ -1,24 +1,32 @@
-version: "3.5"
+version: "3.7"
+
 services:
-  mongodb:
-    image: mongo
+  postgres:
+    container_name: postgres
+    image: postgres:11
     environment:
-      MONGO_INITDB_ROOT_USERNAME: lapis
-      MONGO_INITDB_ROOT_PASSWORD: lapis
-    ports:
-      - "27017:27017"
+      POSTGRES_USER: metabase
+      POSTGRES_PASSWORD: metabase
+      POSTGRES_DB: metabase
+      POSTGRES_DATABASE_NAME: metabase
     volumes:
-      - mongo-data:/data/db
+      - postgres_data:/var/lib/postgres/data
+    ports:
+      - "5432:5432"
 
   metabase:
     image: metabase/metabase
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabase
+      MB_DB_HOST: postgres
     ports:
       - "3000:3000"
-    environment:
-      MB_JAVA_OPTS: "-Dmetabase.plugins.directory=/app/plugins"
-      MB_PLUGINS_JAR: https://github.com/metabase/metabase-mongodb-plugin/releases/download/v0.1.0/metabase-mongodb-plugin-0.1.0.jar
     depends_on:
-      - mongodb
+      - postgres
 
   # app:
   #   build: .
@@ -26,4 +34,4 @@ services:
   #     - mongodb
 
 volumes:
-  mongo-data:
+  postgres_data:
