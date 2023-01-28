@@ -31,7 +31,7 @@ services:
   # app:
   #   build: .
   #   depends_on:
-  #     - mongodb
+  #     - postgres
 
 volumes:
   postgres_data:
