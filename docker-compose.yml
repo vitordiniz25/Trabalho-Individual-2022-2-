@@ -5,8 +5,8 @@ services:
   #   container_name: postgres
   #   image: postgres:11
   #   environment:
-  #     POSTGRES_USER: metabase
-  #     POSTGRES_PASSWORD: metabase
+  #     POSTGRES_USER: lappis
+  #     POSTGRES_PASSWORD: lappis
   #     POSTGRES_DB: metabase
   #     POSTGRES_DATABASE_NAME: metabase
   #   volumes:

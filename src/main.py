@@ -3,9 +3,7 @@ import os
 from parser.YAML_parser import YAMLParser
 from parser.feature_engineering_parser import FeatureEngineeringParser
 from parser.model_parser import ModelParser
-
-if __name__ != "__main__":
-    exit()   
+ 
 
 def get_config():
     initialParser = YAMLParser
