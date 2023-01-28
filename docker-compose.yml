@@ -1,37 +1,35 @@
 version: "3.7"
 
 services:
-  postgres:
-    container_name: postgres
-    image: postgres:11
-    environment:
-      POSTGRES_USER: metabase
-      POSTGRES_PASSWORD: metabase
-      POSTGRES_DB: metabase
-      POSTGRES_DATABASE_NAME: metabase
-    volumes:
-      - postgres_data:/var/lib/postgres/data
-    ports:
-      - "5432:5432"
+  # postgres:
+  #   container_name: postgres
+  #   image: postgres:11
+  #   environment:
+  #     POSTGRES_USER: metabase
+  #     POSTGRES_PASSWORD: metabase
+  #     POSTGRES_DB: metabase
+  #     POSTGRES_DATABASE_NAME: metabase
+  #   volumes:
+  #     - postgres_data:/var/lib/postgres/data
+  #   ports:
+  #     - "5432:5432"
 
-  metabase:
-    image: metabase/metabase
-    environment:
-      MB_DB_TYPE: postgres
-      MB_DB_DBNAME: metabase
-      MB_DB_PORT: 5432
-      MB_DB_USER: metabase
-      MB_DB_PASS: metabase
-      MB_DB_HOST: postgres
-    ports:
-      - "3000:3000"
-    depends_on:
-      - postgres
-
-  # app:
-  #   build: .
+  # metabase:
+  #   image: metabase/metabase
+  #   environment:
+  #     MB_DB_TYPE: postgres
+  #     MB_DB_DBNAME: metabase
+  #     MB_DB_PORT: 5432
+  #     MB_DB_USER: metabase
+  #     MB_DB_PASS: metabase
+  #     MB_DB_HOST: postgres
+  #   ports:
+  #     - "3000:3000"
   #   depends_on:
   #     - postgres
 
-volumes:
-  postgres_data:
+  app:
+    build: .
+
+# volumes:
+#   postgres_data:
