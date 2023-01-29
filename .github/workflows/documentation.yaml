@@ -24,10 +24,7 @@ jobs:
         pip install sphinx
         pip install sphinx_autodoc_typehints
         
-    - name: Run doxygen
-      run: doxygen Doxyfile
-    
-    - name: Run sphinx
+    - name: Rodando sphinx
       working-directory: ./docs
       run: |
         make html
