@@ -112,7 +112,7 @@ class KeySmash:
         Examples
         --------
         >>> calculate_number_count_metric("ABC 123 !@#")
-        0.0 
+        0.0
         >>> calculate_number_count_metric("ABC123 !@#")
         0.9
         """
