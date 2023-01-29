@@ -1,0 +1,32 @@
+name: Python code linting
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+
+    - name: Lint code with Flake8
+      run: flake8 src/ --max-line=150
+
+    - name: Upload lint results
+      uses: actions/upload-artifact@v2
+      with:
+        name: lint-results
+        path: flake8.txt

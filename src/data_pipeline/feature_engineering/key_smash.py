@@ -1,34 +1,34 @@
 from statistics import mean
 
+
 class KeySmash:
     """A class for calculating metrics to indicate key smashing behavior in a text.
-    
+
     Key smashing is the act of typing on a keyboard in a rapid and uncontrolled manner,
     often resulting in a series of random characters being entered into a document or text field.
     """
-    
-    
+
     def __init__(self):
         self.char_sets = {
             "vowels": 'aeiouáéíóúãõ',
             "consonants": 'bcdfghjklmnñpqrstvwxyz',
             "special_characters": '!@#$%^¨|\'\"&*()_+:;~`´]}{[}ºª=-.¿¡'
         }
-    
+
     def calculate_char_frequency_metric(self, text):
         """
         Calculate the Char Frequency Metric.
-        
+
         Parameters
         ----------
         text : str
             The text to use for the calculation.
-            
+
         Returns
         -------
         float
             Char Frequency Metric.
-            
+
         Examples
         --------
         >>> calculate_char_frequency_metric("PUENTECILLA KM. 1.7")
@@ -49,11 +49,11 @@ class KeySmash:
             return 0
         else:
             return mean(word_results)
-    
+
     def calculate_irregular_sequence_metric(self, text, opt):
         """
         Calculate the Irregular Sequence Metric.
-        
+
         Parameters
         ----------
         text : str
@@ -61,12 +61,12 @@ class KeySmash:
         opt : str
             The type of characters to consider for the calculation,
             can be one of 'vowels', 'consonants', or 'special_characters'.
-            
+
         Returns
         -------
         float
             Irregular Sequence Metric.
-            
+
         Examples
         --------
         >>> calculate_irregular_sequence_metric("PUENTECILLA KM. 1.7", "vowels")
@@ -92,23 +92,23 @@ class KeySmash:
 
         if (count_sequence != 1):
             sequence_regex.append(count_sequence**2)
-            
+
         return sum(sequence_regex)/len(text)
-    
+
     def calculate_number_count_metric(self, text):
         """
         Calculate the Number Count Metric.
-        
+
         Parameters
         ----------
         text : str
             The text field to use for the calculation.
-            
+
         Returns
         -------
         float
             Number Count Metric.
-            
+
         Examples
         --------
         >>> calculate_number_count_metric("ABC 123 !@#")
