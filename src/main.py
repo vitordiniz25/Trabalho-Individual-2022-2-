@@ -1,8 +1,8 @@
 import os
 
-from parser.YAML_parser import YAMLParser
-from parser.feature_engineering_parser import FeatureEngineeringParser
-from parser.model_parser import ModelParser
+from src.parser.YAML_parser import YAMLParser
+from src.parser.feature_engineering_parser import FeatureEngineeringParser
+from src.parser.model_parser import ModelParser
 
 
 def get_config():
